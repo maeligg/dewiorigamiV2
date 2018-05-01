@@ -1,0 +1,20 @@
+.c-form {
+  background-color: $brand-color;
+  color: #fff;
+}
+
+.c-form__form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.c-form__label,
+.c-form__input {
+  display: block;
+  width: 100%;
+}
+
+.c-form__input {
+  padding: 1rem 2rem;
+}

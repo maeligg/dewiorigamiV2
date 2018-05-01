@@ -1,0 +1,31 @@
+.c-header {
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  background-color: rgba(#fff, 0.5);
+  background-size: cover;
+  background-position: center;
+
+  @include from-up(large) {
+    @supports (-webkit-clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%)) or (clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%)) {
+      padding-bottom: 0;
+    }
+  }
+
+  .l-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.c-header__title {
+  display: inline-block;
+  margin: 0 0 2rem;
+  padding: 5px 10px;
+  line-height: 1.5;
+  border: 8px solid $brand-color;
+}
+
+.c-header__tagline {
+  display: block;
+}

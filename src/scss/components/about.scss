@@ -1,0 +1,80 @@
+.c-about {
+  display: grid;
+  padding: 0;
+  grid: repeat(4, minmax(300px, auto)) / 1fr;
+  background-color: $brand-color;
+  color: #fff;
+
+  @include from-up(large) {
+    grid: repeat(2, minmax(400px, auto)) / repeat(2, 1fr);
+    clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+.c-about__text {
+  max-width: 700px;
+  padding: 2rem;
+
+  &:nth-of-type(1) {
+    @include from-up(large) {
+      margin-left: auto;
+
+      @supports (-webkit-clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%)) or (clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%)) {
+        padding-top: 14rem;
+      }
+    }
+  }
+
+  &:nth-of-type(4) {
+    margin-right: auto;
+  }
+
+  @include from-up(large) {
+    padding: 4rem;
+  }
+}
+
+.c-about__origami {
+  position: relative;
+  background-size: cover;
+
+  &:focus,
+  &:hover {
+    &::after {
+      opacity: 0;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  &:nth-of-type(3) {
+    grid-row: 4 / -1;
+
+    @include from-up(large) {
+      grid-row: auto;
+    }
+  }
+}
+
+.c-about__origami-1 {
+  background-image: url("images/origami-1.jpg");
+
+  &::after {
+    background-image: url("images/origami-1-shapes.png");
+  }
+}
+
+.c-about__origami-2 {
+  background-image: url("images/origami-2.jpg");
+
+  &::after {
+    background-image: url("images/origami-2-shapes.png");
+  }
+}

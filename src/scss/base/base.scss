@@ -1,0 +1,63 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+header,
+section {
+  padding: 4rem 0;
+}
+
+// main {
+//   @supports (-webkit-clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%)) or (clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%)) {
+//     @include from-up(large) {
+//       position: relative;
+//       top: -8rem;
+//     }
+//   }
+// }
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+p,
+label,
+input,
+textarea {
+  font-size: 1.8rem;
+  line-height: 2;
+}
+
+p {
+  margin-top: 0;
+}
+
+textarea {
+  font-family: "Open Sans", sans-serif;
+}

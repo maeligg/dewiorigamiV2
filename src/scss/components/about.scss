@@ -36,21 +36,22 @@
 
 .c-about__origami {
   position: relative;
-  background-size: cover;
 
   &:focus,
   &:hover {
-    &::after {
-      opacity: 0;
+    &::before {
+      opacity: 1;
     }
   }
 
-  &::after {
+  &::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
     background-size: cover;
+    background-position: center center;
+    opacity: 0;
     transition: opacity 0.5s ease-in-out;
   }
 
@@ -63,18 +64,16 @@
   }
 }
 
-.c-about__origami-1 {
-  background-image: url("images/origami-1.jpg");
-
-  &::after {
-    background-image: url("images/origami-1-shapes.png");
-  }
+.c-about__origami-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.c-about__origami-2 {
-  background-image: url("images/origami-2.jpg");
+.c-about__origami-1::before {
+  background-image: url("images/origami-1.jpg");
+}
 
-  &::after {
-    background-image: url("images/origami-2-shapes.png");
-  }
+.c-about__origami-2::before {
+  background-image: url("images/origami-2.jpg");
 }

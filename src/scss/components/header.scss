@@ -15,14 +15,16 @@
   .l-container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 }
 
 .c-header__title {
   display: inline-block;
   margin: 0 0 2rem;
-  padding: 5px 10px;
+  padding: 1rem 2rem;
   line-height: 1.5;
+  letter-spacing: 0.2rem;
   border: 8px solid $brand-color;
 }
 

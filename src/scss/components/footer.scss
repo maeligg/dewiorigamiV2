@@ -5,10 +5,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
 
-    .c-social-buttons__button {
-      margin: 0;
-    }
+  .c-social-buttons__button + .c-social-buttons__button {
+    margin-left: 1rem;
   }
 }
 

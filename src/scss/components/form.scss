@@ -16,5 +16,10 @@
 }
 
 .c-form__input {
+  margin-bottom: 2rem;
   padding: 1rem 2rem;
+
+  @include from-up(large) {
+    margin-bottom: 0;
+  }
 }

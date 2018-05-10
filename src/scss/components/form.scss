@@ -7,6 +7,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-start;
+}
+
+.c-form__form-group-inner {
+  width: 100%;
 }
 
 .c-form__label,

@@ -1,5 +1,3 @@
-'use strict';
-
 const gulp = require('gulp');
 const gulpSass = require('gulp-sass');
 const sassGlob = require('gulp-sass-glob');
@@ -11,8 +9,8 @@ const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync').create();
 const del = require('del');
 const babel = require('gulp-babel');
-const eslint = require('gulp-eslint');
 const uglify = require('gulp-uglify');
+const prettierEslint = require('gulp-prettier-eslint');
 
 function browsersync() {
   browserSync.init({
@@ -20,10 +18,6 @@ function browsersync() {
       baseDir: './build/',
     },
   });
-}
-
-function browsersyncReload() {
-  browserSync.reload();
 }
 
 function clean() {
@@ -71,8 +65,7 @@ function scripts() {
   return gulp
     .src(['src/index.js'])
     .pipe(plumber())
-    .pipe(eslint())
-    .pipe(eslint.format())
+    .pipe(prettierEslint())
     .pipe(
       babel({
         presets: ['env'],
@@ -82,16 +75,16 @@ function scripts() {
     .pipe(gulp.dest('build'));
 }
 
-gulp.task('copy', copy);
-gulp.task('images', images);
-gulp.task('scripts', scripts);
-gulp.task('watch', gulp.parallel(browsersync, watchFiles));
-gulp.task('build', gulp.series(clean, gulp.parallel(copy, css, scripts, images)));
-gulp.task('default', gulp.series('build', 'watch'));
-
 function watchFiles() {
   gulp.watch(['./src/index.html'], copy);
   gulp.watch(['./src/scss/**/*.scss'], css);
   gulp.watch(['./src/index.js'], scripts);
   gulp.watch(['./src/images/*.{png,jpg,svg}'], images);
 }
+
+gulp.task('copy', copy);
+gulp.task('images', images);
+gulp.task('scripts', scripts);
+gulp.task('watch', gulp.parallel(browsersync, watchFiles));
+gulp.task('build', gulp.series(clean, gulp.parallel(copy, css, scripts, images)));
+gulp.task('default', gulp.series('build', 'watch'));

@@ -57,7 +57,7 @@
                 <img src="images/origami-1-shapes.png" alt="origami-shapes" class="c-about__origami-image">
             </div>
             <div class="c-about__origami c-about__origami-2">
-                <img src="images/origami-2-shapes.png" alt="origami-shapes" class="c-about__origami-image">
+                <img data-src="images/origami-2-shapes.png" alt="origami-shapes" class="c-about__origami-image">
             </div>
             <div class="c-about__text">
                 <p>
@@ -87,9 +87,9 @@
                             unde voluptatum facere dolorem! Vero quaerat porro aspernatur dolorem nam quas saepe excepturi
                             dicta, illum fugiat ab a eum ut, dolore ullam voluptatum facere, magnam pariatur aliquid facilis
                             soluta similique? Amet quibusdam quia tempore.</p>
-                        <img src="images/react-large-2.jpg" alt="react" class="c-projects__project-image">
-                        <img src="images/react-3.jpg" alt="react" class="c-projects__project-image">
-                        <img src="images/react-5.jpg" alt="react" class="c-projects__project-image">
+                        <img data-src="images/react-large-2.jpg" alt="react" class="c-projects__project-image">
+                        <img data-src="images/react-3.jpg" alt="react" class="c-projects__project-image">
+                        <img data-src="images/react-5.jpg" alt="react" class="c-projects__project-image">
                     </div>
                 </div>
                 <div class="c-projects__project">
@@ -104,9 +104,9 @@
                             asperiores deleniti totam officiis fuga consequatur? Optio accusamus exercitationem distinctio
                             neque.
                         </p>
-                        <img src="images/artisan-tall-1.jpg" alt="react" class="c-projects__project-image">
-                        <img src="images/artisan-1.jpg" alt="react" class="c-projects__project-image">
-                        <img src="images/artisan-3.jpg" alt="react" class="c-projects__project-image">
+                        <img data-src="images/artisan-tall-1.jpg" alt="react" class="c-projects__project-image">
+                        <img data-src="images/artisan-1.jpg" alt="react" class="c-projects__project-image">
+                        <img data-src="images/artisan-3.jpg" alt="react" class="c-projects__project-image">
                     </div>
                 </div>
             </div>
@@ -161,6 +161,16 @@
             </div>
         </div>
     </footer>
+    <script>
+        (function (w, d) {
+            var b = d.getElementsByTagName('body')[0];
+            var s = d.createElement("script"); s.async = true;
+            var v = !("IntersectionObserver" in w) ? "8.7.1" : "10.5.2";
+            s.src = "https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/" + v + "/lazyload.min.js";
+            w.lazyLoadOptions = {}; // Your options here. See "recipes" for more information about async.
+            b.appendChild(s);
+        }(window, document));
+    </script>
     <script src="index.js"></script>
 </body>
 

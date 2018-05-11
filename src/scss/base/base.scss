@@ -56,3 +56,14 @@ p {
 textarea {
   font-family: "Open Sans", sans-serif;
 }
+
+img[data-src] {
+  transform: translateY(10%);
+  opacity: 0;
+  transition: all 1s ease-in-out;
+
+  &.loaded {
+    transform: none;
+    opacity: 1;
+  }
+}

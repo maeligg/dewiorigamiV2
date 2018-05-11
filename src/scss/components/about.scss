@@ -6,7 +6,7 @@
   color: #fff;
 
   @include from-up(large) {
-    grid: repeat(2, 600px) / repeat(2, 1fr);
+    grid: repeat(2, minmax(400px, auto)) / repeat(2, 1fr);
     clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
   }
 }

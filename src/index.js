@@ -12,7 +12,7 @@ const formValidation = () => {
   });
 };
 
-var myLazyLoad = new LazyLoad({
+const myLazyLoad = new LazyLoad({
   elements_selector: '.js-lazyload',
 });
 

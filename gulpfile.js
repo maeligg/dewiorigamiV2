@@ -26,7 +26,7 @@ function clean() {
 
 function copy() {
   return gulp
-    .src('./src/*')
+    .src(['./src/*', './src/video/*'], { base: './src/' })
     .pipe(plumber())
     .pipe(gulp.dest('./build'))
     .pipe(browserSync.stream());
@@ -76,7 +76,7 @@ function scripts() {
 }
 
 function watchFiles() {
-  gulp.watch(['./src/index.html'], copy);
+  gulp.watch(['./src/*', './src/video/*'], copy);
   gulp.watch(['./src/scss/**/*.scss'], css);
   gulp.watch(['./src/index.js'], scripts);
   gulp.watch(['./src/images/*.{png,jpg,svg}'], images);

@@ -6,11 +6,18 @@
 .c-form__form-group {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-.c-form__form-group-inner {
+.c-form__form-group-half {
+  @include from-up(large) {
+    width: 50%;
+  }
+}
+
+.c-form__form-group-full {
   width: 100%;
 }
 

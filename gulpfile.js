@@ -26,7 +26,7 @@ function clean() {
 
 function copy() {
   return gulp
-    .src(['./src/*', './src/video/*'], { base: './src/' })
+    .src(['./src/*', './src/assets/*'], { base: './src/' })
     .pipe(plumber())
     .pipe(gulp.dest('./build'))
     .pipe(browserSync.stream());

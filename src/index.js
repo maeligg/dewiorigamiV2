@@ -1,7 +1,7 @@
 const formValidation = () => {
   const inputs = document.querySelectorAll('input, textarea');
 
-  inputs.forEach(input => {
+  inputs.forEach((input) => {
     input.addEventListener('invalid', () => {
       input.classList.add('c-form__input--error');
     });

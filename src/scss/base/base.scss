@@ -63,3 +63,12 @@ img[data-src] {
     opacity: 1;
   }
 }
+
+a {
+  color: $brand-color;
+
+  &:hover,
+  &:focus {
+    color: $brand-dark;
+  }
+}

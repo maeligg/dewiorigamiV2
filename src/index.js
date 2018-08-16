@@ -12,8 +12,17 @@ const formValidation = () => {
   });
 };
 
+const catchFlies = () => {
+  document.querySelector('.js-contact-form').addEventListener('submit', (e) => {
+    if (document.querySelector('.js-catch-flies').value) {
+      e.preventDefault();
+    }
+  });
+};
+
 const myLazyLoad = new LazyLoad({
   elements_selector: '.js-lazyload',
 });
 
 formValidation();
+catchFlies();

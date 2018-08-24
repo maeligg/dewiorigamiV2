@@ -20,7 +20,7 @@ const catchFlies = () => {
   });
 };
 
-const myLazyLoad = new LazyLoad({
+new LazyLoad({
   elements_selector: '.js-lazyload',
 });
 

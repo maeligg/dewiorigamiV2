@@ -8,9 +8,7 @@ const autoprefixer = require('autoprefixer');
 const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync').create();
 const del = require('del');
-const babel = require('gulp-babel');
-const uglify = require('gulp-uglify');
-const prettierEslint = require('gulp-prettier-eslint');
+const { exec } = require('child_process');
 
 function browsersync() {
   browserSync.init({
@@ -48,31 +46,19 @@ function images() {
     .src('./src/images/**/*')
     .pipe(plumber())
     .pipe(gulpChanged('./build/images'))
-    .pipe(
-      gulpImagemin([
-        gulpImagemin.jpegtran({ progressive: true }),
-        gulpImagemin.optipng({ optimizationLevel: 5 }),
-        gulpImagemin.svgo({
-          plugins: [{ removeViewBox: false }],
-        }),
-      ]),
-    )
+    .pipe(gulpImagemin([
+      gulpImagemin.jpegtran({ progressive: true }),
+      gulpImagemin.optipng({ optimizationLevel: 5 }),
+      gulpImagemin.svgo({
+        plugins: [{ removeViewBox: false }],
+      }),
+    ]))
     .pipe(gulp.dest('./build/images'))
     .pipe(browserSync.stream());
 }
 
 function scripts() {
-  return gulp
-    .src(['src/index.js'])
-    .pipe(plumber())
-    .pipe(prettierEslint())
-    .pipe(
-      babel({
-        presets: ['env'],
-      }),
-    )
-    .pipe(uglify())
-    .pipe(gulp.dest('build'));
+  return exec('parcel build src/index.js --out-dir build/');
 }
 
 function watchFiles() {

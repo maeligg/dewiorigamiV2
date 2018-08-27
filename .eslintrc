@@ -3,5 +3,9 @@
 
   "env": {
     "browser": true
+  },
+
+  "rules": {
+    "no-new": 0
   }
 }

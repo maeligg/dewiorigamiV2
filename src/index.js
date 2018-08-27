@@ -1,3 +1,5 @@
+import LazyLoad from 'vanilla-lazyload';
+
 const formValidation = () => {
   const inputs = document.querySelectorAll('input, textarea');
 

@@ -24,7 +24,7 @@ function clean() {
 
 function copy() {
   return gulp
-    .src(['./src/*', './src/assets/*'], { base: './src/' })
+    .src(['./src/index.html', './src/assets/others/*'], { base: './src/' })
     .pipe(plumber())
     .pipe(gulp.dest('./build'))
     .pipe(browserSync.stream());
@@ -32,7 +32,7 @@ function copy() {
 
 function css() {
   return gulp
-    .src('./src/scss/main.scss')
+    .src('./src/assets/scss/main.scss')
     .pipe(plumber())
     .pipe(sassGlob())
     .pipe(gulpPostcss([autoprefixer()]))
@@ -43,9 +43,9 @@ function css() {
 
 function images() {
   return gulp
-    .src('./src/images/**/*')
+    .src('./src/assets/images/**/*')
     .pipe(plumber())
-    .pipe(gulpChanged('./build/images'))
+    .pipe(gulpChanged('./build/assets/images'))
     .pipe(gulpImagemin([
       gulpImagemin.jpegtran({ progressive: true }),
       gulpImagemin.optipng({ optimizationLevel: 5 }),
@@ -53,7 +53,7 @@ function images() {
         plugins: [{ removeViewBox: false }],
       }),
     ]))
-    .pipe(gulp.dest('./build/images'))
+    .pipe(gulp.dest('./build/assets/images'))
     .pipe(browserSync.stream());
 }
 
@@ -62,10 +62,10 @@ function scripts() {
 }
 
 function watchFiles() {
-  gulp.watch(['./src/*', './src/video/*'], copy);
-  gulp.watch(['./src/scss/**/*.scss'], css);
+  gulp.watch(['./src/index.html', './src/assets/others/*'], copy);
+  gulp.watch(['./src/assets/scss/**/*.scss'], css);
   gulp.watch(['./src/index.js'], scripts);
-  gulp.watch(['./src/images/*.{png,jpg,svg}'], images);
+  gulp.watch(['./src/assets/images/*.{png,jpg,svg}'], images);
 }
 
 gulp.task('copy', copy);

@@ -6,28 +6,37 @@ const gulpImagemin = require('gulp-imagemin');
 const gulpPostcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const plumber = require('gulp-plumber');
-const browserSync = require('browser-sync').create();
+const browsersync = require('browser-sync').create();
 const del = require('del');
-const { exec } = require('child_process');
+const { exec, spawn } = require('child_process');
 
-function browsersync() {
-  browserSync.init({
+function browserSync() {
+  browsersync.init({
     server: {
-      baseDir: './build/',
-    },
+      baseDir: './_site/'
+    }
   });
 }
 
+function browserSyncReload(done) {
+  browsersync.reload();
+  done();
+}
+
 function clean() {
-  return del(['./build/']);
+  return del(['./_site/']);
+}
+
+function eleventy() {
+  return spawn('npx', ['eleventy']);
 }
 
 function copy() {
   return gulp
-    .src(['./src/index.html', './src/assets/others/*'], { base: './src/' })
+    .src('./src/assets/others/**/*')
     .pipe(plumber())
-    .pipe(gulp.dest('./build'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest('./_site/assets/others'))
+    .pipe(browsersync.stream());
 }
 
 function css() {
@@ -37,15 +46,15 @@ function css() {
     .pipe(sassGlob())
     .pipe(gulpPostcss([autoprefixer()]))
     .pipe(gulpSass())
-    .pipe(gulp.dest('./build'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest('./_site'))
+    .pipe(browsersync.stream());
 }
 
 function images() {
   return gulp
     .src('./src/assets/images/**/*')
     .pipe(plumber())
-    .pipe(gulpChanged('./build/assets/images'))
+    .pipe(gulpChanged('./_site/assets/images'))
     .pipe(gulpImagemin([
       gulpImagemin.jpegtran({ progressive: true }),
       gulpImagemin.optipng({ optimizationLevel: 5 }),
@@ -53,24 +62,24 @@ function images() {
         plugins: [{ removeViewBox: false }],
       }),
     ]))
-    .pipe(gulp.dest('./build/assets/images'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest('./_site/assets/images'))
+    .pipe(browsersync.stream());
 }
 
 function scripts() {
-  return exec('parcel build src/index.js --out-dir build/');
+  return spawn('parcel', ['build', 'src/index.js', '--out-dir', '_site/']);
 }
 
 function watchFiles() {
-  gulp.watch(['./src/index.html', './src/assets/others/*'], copy);
-  gulp.watch(['./src/assets/scss/**/*.scss'], css);
-  gulp.watch(['./src/index.js'], scripts);
-  gulp.watch(['./src/assets/images/*.{png,jpg,svg}'], images);
+  gulp.watch(['./src/index.njk'], gulp.series(eleventy, browserSyncReload));
+  gulp.watch(['./src/assets/others/*'], gulp.series(copy));
+  gulp.watch(['./src/assets/scss/**/*'], gulp.series(css));
+  gulp.watch(['./src/index.js'], gulp.series(scripts, browserSyncReload));
+  gulp.watch(['./src/assets/images/*.{png,jpg,svg}'], gulp.series(images));
 }
 
-gulp.task('copy', copy);
-gulp.task('images', images);
-gulp.task('scripts', scripts);
-gulp.task('watch', gulp.parallel(browsersync, watchFiles));
-gulp.task('build', gulp.series(clean, gulp.parallel(copy, css, scripts, images)));
-gulp.task('default', gulp.series('build', 'watch'));
+const watch = gulp.parallel(browserSync, watchFiles);
+const build = gulp.series(clean, gulp.parallel(eleventy, copy, css, scripts, images));
+
+gulp.task('build', gulp.series(build));
+gulp.task('start', gulp.series(build, watch));

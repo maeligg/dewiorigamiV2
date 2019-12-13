@@ -4,16 +4,17 @@
   "description": "The portfolio site of origami artist Dewi",
   "main": "build/index.html",
   "scripts": {
-    "start": "gulp",
+    "start": "gulp start",
     "build": "gulp build"
   },
   "author": "Maël Brunet",
   "license": "ISC",
   "devDependencies": {
+    "@11ty/eleventy": "0.9.0",
     "autoprefixer": "^8.4.1",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "browser-sync": "^2.23.7",
+    "browser-sync": "2.26.7",
     "del": "^3.0.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",

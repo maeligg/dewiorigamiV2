@@ -79,8 +79,7 @@ function scripts() {
 }
 
 function watchFiles() {
-  gulp.watch(['./src/index.njk'], gulp.series(eleventy, browserSyncReload));
-  gulp.watch(['./src/assets/others/*'], gulp.series(copy));
+  gulp.watch(['./src/**/*.njk'], gulp.series(eleventy, browserSyncReload));
   gulp.watch(['./src/assets/others/*'], gulp.series(copyOtherAssets));
   gulp.watch(['./src/assets/scss/**/*'], gulp.series(css));
   gulp.watch(['./src/index.js'], gulp.series(scripts, browserSyncReload));

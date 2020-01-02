@@ -1,0 +1,26 @@
+<section class="c-form">
+    <div class="l-container">
+        <h2>Get in touch</h2>
+        <form class="l-flex-wrapper js-contact-form" name="contact" method="POST" netlify>
+            <div class="c-form__form-group c-form__form-group-half">
+                <label for="name" class="c-form__label">Name (required)</label>
+                <input name="name" id="name" type="text" required class="c-form__input">
+            </div>
+            <div class="c-form__form-group c-form__form-group-half">
+                <label for="email" class="c-form__label">Email (required)</label>
+                <input name="email" id="email" type="email" required class="c-form__input">
+            </div>
+            <div class="c-form__form-group c-form__form-group-full">
+                <label for="message" class="c-form__label">Your message (required)</label>
+                <textarea name="message" id="message" required cols="30" rows="5" class="c-form__input"></textarea>
+            </div>
+            <div class="sr-only">
+                <label for="web">Leave this field blank</label>
+                <input type="text" name="web" class="js-catch-flies">
+            </div>
+            <div class="c-form__form-group c-form__form-group-half">
+                <input type="submit" value="Send message" class="c-button c-button--outline u-mt2">
+            </div>
+        </form>
+    </div>
+</section>

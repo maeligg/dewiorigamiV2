@@ -28,7 +28,7 @@ function clean() {
 }
 
 function eleventy() {
-  return spawn('npx', ['eleventy']);
+  return exec('npx eleventy');
 }
 
 function copy() {
@@ -67,7 +67,7 @@ function images() {
 }
 
 function scripts() {
-  return spawn('parcel', ['build', 'src/index.js', '--out-dir', '_site/']);
+  return exec('parcel build src/index.js --out-dir _site/');
 }
 
 function watchFiles() {

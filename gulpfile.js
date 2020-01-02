@@ -33,9 +33,9 @@ function eleventy() {
 
 function copy() {
   return gulp
-    .src('./src/assets/others/**/*')
+    .src(['./src/favicon.png', './src/assets/others/**/*'])
     .pipe(plumber())
-    .pipe(gulp.dest('./_site/assets/others'))
+    .pipe(gulp.dest('./_site'))
     .pipe(browsersync.stream());
 }
 

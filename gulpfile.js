@@ -31,11 +31,19 @@ function eleventy() {
   return exec('npx eleventy');
 }
 
-function copy() {
+function copyStatic() {
   return gulp
-    .src(['./src/favicon.png', './src/assets/others/**/*'])
+    .src(['./src/favicon.png'])
     .pipe(plumber())
     .pipe(gulp.dest('./_site'))
+    .pipe(browsersync.stream());
+}
+
+function copyOtherAssets() {
+  return gulp
+    .src(['./src/assets/others/**/*'])
+    .pipe(plumber())
+    .pipe(gulp.dest('./_site/assets/others'))
     .pipe(browsersync.stream());
 }
 
@@ -73,13 +81,14 @@ function scripts() {
 function watchFiles() {
   gulp.watch(['./src/index.njk'], gulp.series(eleventy, browserSyncReload));
   gulp.watch(['./src/assets/others/*'], gulp.series(copy));
+  gulp.watch(['./src/assets/others/*'], gulp.series(copyOtherAssets));
   gulp.watch(['./src/assets/scss/**/*'], gulp.series(css));
   gulp.watch(['./src/index.js'], gulp.series(scripts, browserSyncReload));
   gulp.watch(['./src/assets/images/*.{png,jpg,svg}'], gulp.series(images));
 }
 
 const watch = gulp.parallel(browserSync, watchFiles);
-const build = gulp.series(clean, gulp.parallel(eleventy, copy, css, scripts, images));
+const build = gulp.series(clean, gulp.parallel(eleventy, copyStatic, copyOtherAssets, css, scripts, images));
 
 gulp.task('build', gulp.series(build));
 gulp.task('start', gulp.series(build, watch));

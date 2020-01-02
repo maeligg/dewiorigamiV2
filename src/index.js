@@ -1,5 +1,3 @@
-import LazyLoad from 'vanilla-lazyload';
-
 const formValidation = () => {
   const inputs = document.querySelectorAll('input, textarea');
 
@@ -21,10 +19,6 @@ const catchFlies = () => {
     }
   });
 };
-
-new LazyLoad({
-  elements_selector: '.js-lazyload',
-});
 
 formValidation();
 catchFlies();

@@ -27,8 +27,5 @@
     "gulp-sass-glob": "^1.0.9",
     "parcel": "^1.8.1",
     "parcel-plugin-lazy": "0.0.3"
-  },
-  "dependencies": {
-    "vanilla-lazyload": "^10.15.0"
   }
 }
